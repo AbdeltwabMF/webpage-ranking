@@ -13,6 +13,8 @@
 	%showframe, % Uncomment to show how the type block is set on the page
 }
 
+\usepackage{tabularx}
+\usepackage{booktabs}
 \usepackage{blindtext}
 % Character encoding
 \usepackage[T1]{fontenc}
@@ -29,14 +31,14 @@
 \usepackage{graphicx, float}
 \usepackage{keystroke}
 \usepackage{pgfplots}\usepgfplotslibrary{units}\pgfplotsset{compat=1.16}
-% Line Spacing
-\usepackage{setspace}
 % Depth of the ToC
-\setcounter{tocdepth}{2}
+\setcounter{tocdepth}{3}
 % Hyperlink References
 \usepackage{hyperref}
 % Storage Path for images
-\graphicspath{{graphics/}{images/}{./}}
+\graphicspath{{images/}}
+
+\setkomafont{disposition}{\normalfont\bfseries}
 
 % Environments
 \renewenvironment{abstract}{
@@ -69,24 +71,24 @@
 	{\Large Faculty of Engineering \par}
 	{\Large Computers \& Systems Engineering Department \par}\vspace{12pt}
 	\vfill
-	{\huge\bfseries\scshape Web-page Ranking \par}\vspace{8pt}
+	{\huge\bfseries\scshape Web Page Ranking \par}\vspace{8pt}
   {\scshape Seo Suggestion Search Engine Project \par}\vspace{8pt}
   {\itshape (Software Design Report) \par}
 	\vfill
-	{\Large Contributors: \\[12pt]
-    \Large\itshape
+	{\Large\texttt{Contributors:} \\[12pt]
+    \Large\itshape\ttfamily
     \begin{tabular}{ll}
       55 & Abd El-Twab M. Fakhry \\
-      56 & Abdurrahman Khalefa \\
-      57 & Abdurrahman Ramadan \\
-      58 & Abdurrahman Gamal \\
-      59 & Abd El-Khalek Alashker \\
-      60 & Abd El-Hameed \\
+      56 & Abd El-Hameed Hassan \\
+      57 & Abd El-Khalek Alashker \\
+      58 & Abdurrahman Khalefa \\
+      59 & Abdurrahman Gamal \\
+      60 & Abdurrahman Ramadan \\
     \end{tabular}
   }\par
 	\vspace{1cm}
 	\vfill
-  {\Large{Supervised by:} \\
+  {\Large\texttt{Supervised by:} \\
 	\texttt{Dr. Muhammad Atef} \par}
   \vfill
   {\large \today \par}
@@ -112,112 +114,230 @@
 
 \newpage
 
-\doublespacing
 \section{Introduction}
 
 Your introduction briefly explains the problem you address, and what you've achieved towards solving the problem. It's an edited and updated version of your context and objectives from your topic outline document.
 
-\section{Related Work}
+\section{User Stories}
 
-Your related work section positions your problem and your approach with respect to other, maybe similar, projects you've found in the literature.
-It "\textit{should not only explain what research others have done, but in each case should compare and contrast that to your work and also to other related work. After reading this section, a reader should understand the key idea and contribution of each significant piece of related work, how they fit together, and how your work differs.}"\footnote{\href{https://homes.cs.washington.edu/~mernst/advice/write-technical-paper.html\#related-work}{Michael Ernst - How to write a technical paper}}
-%%%% DO NOT write a related work section that is just a laundry list of other papers, with a sentence about each one that was lifted from its abstract, and without any critical analysis nor deep comparison to other work.
+\subsection{User Login}
 
-It's an edited and updated version of your literature review. Here are a few examples of how to insert citations like~\cite{byzantine-pki}, \cite{atomic-mcast-tcs01}, and also~\cite{sybilattack}, or even~\cite{psn-fail, verisign-fail}.
-
-\section{Solution}
-
-The solution section covers all of your contributions (architecture, algorithms, formulas, findings).
-It explains in detail each contribution, if possible with figures/schematics.
-
-Don't forget that a figure goes a long way towards helping your reader understand your work. For instance, Figure~\ref{fig:ascent} outlines the layers involved in a distributed certification service, and how they articulate together. Nevertheless, a figure must always come with at least one paragraph of explanation. The rule is that anyone should be able to understand your solution from reading the text in this section, even if they skip the figures.
-
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[scale=0.7]{ascent-archi.pdf}
-	\end{center}
-	\caption{Architecture of our distributed certification service}
-	\label{fig:ascent}
-\end{figure}
-
-Figure~\ref{fig:log-archi} is a pretty good example of a figure that is completely useless unless it is not accompanied by a textual explanation.
-
-\begin{figure}
-	\begin{center}
-		\includegraphics[scale=0.5]{certificates-log-archi.pdf}
-	\end{center}
-	\caption{Try to guess what this figure illustrates; I double-dare you...}
-	\label{fig:log-archi}
-\end{figure}
-
-\section{Results and Discussion}
-
-The results section details your metrics and experiments for the assessment of your solution. It then provides experimental validation for your approach with visual aids such as data tables and graphs. In particular, it allows you to compare your idea with other approaches you've tested, for example solutions you've mentioned in your related work section.
-
-\subsection{Experimentation protocol}
-
-It is of the utmost importance to describe how you came up with the measurements and results that support your evaluation.
-
-\subsection{Data tables}
-
-Every data table should be numbered, have a brief description as its title, and specify the units used.
-
-As an example, Table~\ref{tab:my_label} compares the average latencies of native application calls to networked services. The experiments were conducted on an Apple MacBook Air 2010 with a CPU speed of 1.4GHz and a bus speed of 800MHz. Each data point is a mean over 20 instances of each call, after discarding both the lowest and the highest measurement.
-
-\begin{table}[ht]
-  \centering
-  \begin{tabular}{llr}
+\begin{table}[H]
+  \caption{User Story 1}
+  \begin{tabular}{p{0.45\linewidth} | p{0.45\linewidth}}
+    \toprule
+    User Story Code & US1 \\
+    \midrule
+    Name & User login \\
     \hline
-    \multicolumn{2}{c}{Network Applications} \\
-    \cline{1-2}
-    Service    & Protocol & Latency (\si{\ms}) \\
+    Statement & As a user, I want to login into the system, So that I can search for specific topics. \\
     \hline
-    DNS         & UDP       & \SI{13.65}{\ms}      \\
-               & TCP       & \SI{0.01}{\ms}       \\
-    NTP         & UDP       & \SI{92.50}{\ms}      \\
-    SMTP        & TCP       & \SI{33.33}{\ms}      \\
-    HTTP        & TCP       & \SI{8.99}{\ms}       \\
+    Priority & HIGH \\
     \hline
+    Direct actors & User \\
+    \hline
+    Pre-Conditions & {
+                     \begin{enumerate}
+                     \item The user has internet access.
+                     \item The user has a browser.
+                     \item The user opens the login page in the browser.
+                     \end{enumerate}
+                     } \\
+    \hline
+    Post-Conditions & Application functionalities will be available for a user to use. \\
+    \hline
+    % Main Success Section = Use-Cases >> Diagrams
+    Senario & {
+              \begin{enumerate}
+              \item The user fills in username and password fields.
+              \item The user clicks on the login button.
+              \item The system will validate the username and password. If correct, log in; otherwise, stay on the current login page.
+              \item The user can search for a specific term or enter a live URL for keyword suggestions.
+              \item The system logs both correct and wrong login.
+              \end{enumerate}
+              } \\
+    \bottomrule
   \end{tabular}
-  \caption{Comparison of latencies between services running on \texttt{localhost}.}
-  \label{tab:my_label}
 \end{table}
 
-\subsection{Graphs}
+\subsection{Administrator Login}
 
-Graphs are often the most important information in your report; you should design and plot them with great care. A graph contains a lot of information in a short space. Graphs should be numbered and have a title. Their axes should be labelled, with the quantities and units specified. Make sure that individual data points (your measurements) stand out clearly. And of course, always associate your graph with text that explains your results, and outlines the conclusions you draw from these results.
+\begin{table}[H]
+  \caption{User Story 2}
+  \begin{tabular}{p{0.45\linewidth} | p{0.45\linewidth}}
+    \toprule
+    User Story Code & US2 \\
+    \midrule
+    Name & Administrator login \\
+    \hline
+    Statement & As an administrator, I want to login into the system, So that I can enter the admin area. \\
+    \hline
+    Priority & HIGH \\
+    \hline
+    Direct actors & Administrator \\
+    \hline
+    Pre-Conditions & {
+                     \begin{enumerate}
+                     \item The administrator has internet access.
+                     \item The administrator has a browser.
+                     \item The administrator opens the Admin login page in the browser.
+                     \end{enumerate}
+                     } \\
+    \hline
+    Post-Conditions & Application functionalities will be available for an administrator to use. \\
+    \hline
+    % Main Success Section = Use-Cases >> Diagrams
+    Senario & {
+              \begin{enumerate}
+              \item The administrator fills in username and password fields.
+              \item The administrator clicks on the login button.
+              \item The system will validate the username and password. If correct, log in; otherwise, stay on the current login page.
+              \item The administrator can feed the database website URLs and their metadata.
+              \item The system logs both correct and wrong login.
+              \end{enumerate}
+              } \\
+    \bottomrule
+  \end{tabular}
+\end{table}
 
-\begin{figure}
-	\begin{center}
-		\includegraphics[scale=0.9]{perf-plot-1.pdf}
-	\end{center}
-	\caption{Probability of including [k] faulty/malicious nodes in the service}
-	\label{graph:faulty-proportion-plot}
-\end{figure}
+\subsection{Website URLs}
 
-For example, Figure~\ref{graph:faulty-proportion-plot} compares the efficiency of three different service architectures in eliminating adversarial behaviors. Every data point gives the probability that $k$ faulty/malicious nodes managed to participate in a computation that involves 32 nodes. In the absence of at least one reliable node ($k = 32$), the failure will go undetected ; but the results show that this case is extremely unlikely, regardless of the architecture. The most significant result pertains to $k = 16$: the reliable nodes detect the failure, but cannot reach a majority to recover. The graph shows that the \texttt{CORPS 5\%} architecture is much more resilient than the \texttt{DHT 30\%} architecture, by a magnitude of $10^{11}$.
+\begin{table}[H]
+  \caption{User Story 3}
+  \begin{tabular}{p{0.45\linewidth} | p{0.45\linewidth}}
+    \toprule
+    User Story Code & US3 \\
+    \midrule
+    Name & Website URLs \\
+    \hline
+    Statement & As an administrator, I want to feed the database website URLs and their metadata, So that the system can use them to search the user query. \\
+    \hline
+    Priority & HIGH \\
+    \hline
+    Direct actors & Administrator \\
+    \hline
+    Pre-Conditions & {
+                     \begin{enumerate}
+                     \item US2.
+                     \end{enumerate}
+                     } \\
+    \hline
+    Post-Conditions & - \\
+    \hline
+    % Main Success Section = Use-Cases >> Diagrams
+    Senario & {
+              \begin{enumerate}
+              \item The administrator feeds the database a new row with the website URL and its metadata.
+              \end{enumerate}
+              } \\
+    \bottomrule
+  \end{tabular}
+\end{table}
 
-\section{Discussion}
-The discussion section focuses on the main challenges/issues you had to overcome during the project. Outline what your approach does better than the ones you mentioned in your related work, and explain why. Do the same with issues where other solutions  outperform your own. Are there limitations to your approach? If so, what would you recommend towards removing/mitigating them? Given the experience you've gathered working on this project, are there other approaches that you feel are worth exploring?
+\subsection{Search Box}
+
+\begin{table}[H]
+  \caption{User Story 4}
+  \begin{tabular}{p{0.45\linewidth} | p{0.45\linewidth}}
+    \toprule
+    User Story Code & US4 \\
+    \midrule
+    Name & Search Box \\
+    \hline
+    Statement & As a user, I want a search box, So that I can write down my search query. \\
+    \hline
+    Priority & HIGH \\
+    \hline
+    Direct actors & User \\
+    \hline
+    Pre-Conditions & {
+                     \begin{enumerate}
+                     \item US1.
+                     \end{enumerate}
+                     } \\
+    \hline
+    Post-Conditions & - \\
+    \hline
+    % Main Success Section = Use-Cases >> Diagrams
+    Senario & {
+              \begin{enumerate}
+              \item The user write down his/her search query in the search box.
+              \item The user clicks the search button.
+              \item The system uses this query and matches it with the content provided in URLs fed in the database.
+              \item The system generates a list of related URLs.
+              \item The user can then click on any URL in the generated list, and the URL will open the corresponding website.
+              \item The system increases the number of visits to that URL in the database.
+              \item The system goes to the web page URL to fetch its metadata and gives points according to page errors.
+              \item The system updates the page's rank in the database according to the points the page gains and the number of visits.
+              \end{enumerate}
+              } \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{SEO Suggestions}
+
+\begin{table}[H]
+  \caption{User Story 5}
+  \begin{tabular}{p{0.45\linewidth} | p{0.45\linewidth}}
+    \toprule
+    User Story Code & US5 \\
+    \midrule
+    Name & SEO Suggestions \\
+    \hline
+    Statement & As a user, I want to search a live URL, So that I can get suitable keywords and meta descriptions. \\
+    \hline
+    Priority & REGULAR \\
+    \hline
+    Direct actors & User \\
+    \hline
+    Pre-Conditions & {
+                     \begin{enumerate}
+                     \item US1.
+                     \end{enumerate}
+                     } \\
+    \hline
+    Post-Conditions & - \\
+    \hline
+    % Main Success Section = Use-Cases >> Diagrams
+    Senario & {
+              \begin{enumerate}
+              \item The user write down a live URL in the search box.
+              \item The user clicks the search button.
+              \item The system goes and scans the web page URL, extracts its meta-features.
+              \item The system then lists out suitable keywords related to the contents of the web page URL and a meta-description.
+              \end{enumerate}
+              } \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\section{Use-cases}
+
+\subsection{Actors}
+
+\subsubsection{System Administrator}
+
+\subsubsection{User}
+
+\section{ERD Diagram}
+
+\section{Testing Script}
 
 \section{Conclusion}
 
-Give a clear, short, and informative summary of all your important results. Answer the initial question(s) or respond to what you wanted to do, as stated in your introduction. It can be a short table or a list, and possibly one or two short comments or explanations.
-
-Target a reader who may not have time to read the whole report yet, but needs the results or the conclusions immediately. This is a typical situation in real life. Some readers will read your introduction and skip to your conclusion first, and read the whole report only later (if at all).
-
-You may also draw perspectives. What's missing? In what directions could your work be extended?
-
 \newpage
-\singlespacing
+
 \bibliographystyle{IEEEtran}
 \bibliography{references}
 
 
-%------ To create Appendix with additional stuff -------%
-%\newpage
-%\appendix
-%\section{Appendix}
-%Put data files, CAD drawings, additional sketches, etc.
+% \newpage
+
+% To create Appendix with additional stuff
+% Put data files, CAD drawings, additional sketches, etc.
+
+% \appendix
+% \section{Appendix}
 
 \end{document}
