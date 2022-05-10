@@ -3,10 +3,10 @@
 \usepackage{geometry}
 \geometry{
 	paper=a4paper, % Paper size
-	top=2.5cm, % Top margin
-	bottom=2.5cm, % Bottom margin
-	left=2.5cm, % Left margin
-	right=2.4cm, % Right margin
+	top=2cm, % Top margin
+	bottom=2cm, % Bottom margin
+	left=2cm, % Left margin
+	right=2cm, % Right margin
 	headheight=0.75cm, % Header height
 	footskip=1.5cm, % Space from the bottom margin to the baseline of the footer
 	headsep=0.75cm, % Space from the top margin to the baseline of the header
@@ -35,6 +35,10 @@
 \setcounter{tocdepth}{3}
 % Hyperlink References
 \usepackage{hyperref}
+\usepackage{enumitem}
+
+\setlist{resume,leftmargin=8mm,label=\arabic*.,itemsep=-0.5mm,topsep=-3mm}
+
 % Storage Path for images
 \graphicspath{{images/}}
 
@@ -120,144 +124,234 @@ Your introduction briefly explains the problem you address, and what you've achi
 
 \section{User Stories}
 
-\subsection{User Login}
-
-\begin{table}[H]
-  \caption{User Story 1}
-  \begin{tabular}{p{0.45\linewidth} | p{0.45\linewidth}}
-    \toprule
-    User Story Code & US1 \\
-    \midrule
-    Name & User login \\
-    \hline
-    Statement & As a user, I want to login into the system, So that I can search for specific topics. \\
-    \hline
-    Priority & HIGH \\
-    \hline
-    Direct actors & User \\
-    \hline
-    Pre-Conditions & {
-                     \begin{enumerate}
-                     \item The user has internet access.
-                     \item The user has a browser.
-                     \item The user opens the login page in the browser.
-                     \end{enumerate}
-                     } \\
-    \hline
-    Post-Conditions & Application functionalities will be available for a user to use. \\
-    \hline
-    % Main Success Section = Use-Cases >> Diagrams
-    Senario & {
-              \begin{enumerate}
-              \item The user fills in username and password fields.
-              \item The user clicks on the login button.
-              \item The system will validate the username and password. If correct, log in; otherwise, stay on the current login page.
-              \item The user can search for a specific term or enter a live URL for keyword suggestions.
-              \item The system logs both correct and wrong login.
-              \end{enumerate}
-              } \\
-    \bottomrule
-  \end{tabular}
-\end{table}
+Our system has two main actors: Administrator and User.
 
 \subsection{Administrator Login}
 
 \begin{table}[H]
-  \caption{User Story 2}
-  \begin{tabular}{p{0.45\linewidth} | p{0.45\linewidth}}
+  \caption{User Story 1}
+  \begin{tabular}{p{0.18\linewidth} | p{0.72\linewidth}}
     \toprule
-    User Story Code & US2 \\
-    \midrule
-    Name & Administrator login \\
-    \hline
-    Statement & As an administrator, I want to login into the system, So that I can enter the admin area. \\
-    \hline
-    Priority & HIGH \\
-    \hline
-    Direct actors & Administrator \\
-    \hline
+    User Story ID & US1
+    \\\midrule
+    Name & Administrator login
+    \\\hline
+    Statement & As an administrator, I want to login into the system, So that I can enter the admin area.
+    \\\hline
+    Priority & HIGH
+    \\\hline
+    Direct actors & Administrator
+    \\\hline
     Pre-Conditions & {
                      \begin{enumerate}
-                     \item The administrator has internet access.
-                     \item The administrator has a browser.
-                     \item The administrator opens the Admin login page in the browser.
+                     \item Has internet access.
+                     \item Has a browser.
+                     \item Opens the login page in the browser.
                      \end{enumerate}
-                     } \\
-    \hline
-    Post-Conditions & Application functionalities will be available for an administrator to use. \\
-    \hline
-    % Main Success Section = Use-Cases >> Diagrams
+                     }\vspace*{-\baselineskip}
+    \\\hline
+    Post-Conditions & {
+                      \begin{enumerate}
+                      \item Feeds the database website URLs and their metadata.
+                      \item Views the page ranking.
+                      \end{enumerate}
+                      }\vspace*{-\baselineskip}
+    \\\hline
     Senario & {
               \begin{enumerate}
               \item The administrator fills in username and password fields.
-              \item The administrator clicks on the login button.
+              \item The administrator clicks on the admin login button.
               \item The system will validate the username and password. If correct, log in; otherwise, stay on the current login page.
-              \item The administrator can feed the database website URLs and their metadata.
               \item The system logs both correct and wrong login.
               \end{enumerate}
-              } \\
-    \bottomrule
+              }\vspace*{-\baselineskip}
+    \\\bottomrule
   \end{tabular}
 \end{table}
 
 \subsection{Website URLs}
 
 \begin{table}[H]
-  \caption{User Story 3}
-  \begin{tabular}{p{0.45\linewidth} | p{0.45\linewidth}}
+  \caption{User Story 2}
+  \begin{tabular}{p{0.18\linewidth} | p{0.72\linewidth}}
     \toprule
-    User Story Code & US3 \\
-    \midrule
-    Name & Website URLs \\
-    \hline
-    Statement & As an administrator, I want to feed the database website URLs and their metadata, So that the system can use them to search the user query. \\
-    \hline
-    Priority & HIGH \\
-    \hline
-    Direct actors & Administrator \\
-    \hline
+    User Story ID & US2
+    \\\midrule
+    Name & Website URLs
+    \\\hline
+    Statement & As an administrator, I want to feed the database website URLs and their metadata, So that the system can use them to search the user query.
+    \\\hline
+    Priority & HIGH
+    \\\hline
+    Direct actors & Administrator
+    \\\hline
     Pre-Conditions & {
                      \begin{enumerate}
-                     \item US2.
+                     \item US1.
+                     \item Opens the Feed URLs page.
                      \end{enumerate}
-                     } \\
-    \hline
-    Post-Conditions & - \\
-    \hline
+                     }\vspace*{-\baselineskip}
+    \\\hline
+    Post-Conditions & -
+    \\\hline
+    Senario & {
+              \begin{enumerate}
+              \item The administrator feeds the database website URLs and its metadata.
+              \item The administrator clicks on add new website button.
+              \item The system saves the data in a new row in the database.
+              \end{enumerate}
+              }\vspace*{-\baselineskip}
+    \\\bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Page Ranking}
+
+\begin{table}[H]
+  \caption{User Story 3}
+  \begin{tabular}{p{0.18\linewidth} | p{0.72\linewidth}}
+    \toprule
+    User Story ID & US3
+    \\\midrule
+    Name & Page Ranking
+    \\\hline
+    Statement & As an administrator, I want to view the page rank, So that I can optimize the search functionality.
+    \\\hline
+    Priority & REGULAR
+    \\\hline
+    Direct actors & Administrator
+    \\\hline
+    Pre-Conditions & {
+                     \begin{enumerate}
+                     \item US1.
+                     \item Opens the Page Ranking page.
+                     \end{enumerate}
+                     }\vspace*{-\baselineskip}
+    \\\hline
+    Post-Conditions & -
+    \\\hline
+    Senario & {
+              \begin{enumerate}
+              \item The administrator clicks the page ranking anchor in the tab menu.
+              \item The system lists the website URLs in the database sorted based on their number of visits and points.
+              \end{enumerate}
+              }\vspace*{-\baselineskip}
+    \\\bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{User Login}
+
+\begin{table}[H]
+  \caption{User Story 4}
+  \begin{tabular}{p{0.18\linewidth} | p{0.72\linewidth}}
+    \toprule
+    User Story ID & US4
+    \\\midrule
+    Name & User login
+    \\\hline
+    Statement & As a user, I want to login into the system, So that I can search for specific topics.
+    \\\hline
+    Priority & HIGH
+    \\\hline
+    Direct actors & User
+    \\\hline
+    Pre-Conditions & {
+                     \begin{enumerate}
+                     \item Has internet access.
+                     \item Has a browser.
+                     \item Opens the login page in the browser.
+                     \end{enumerate}
+                     }\vspace*{-\baselineskip}
+    \\\hline
+    Post-Conditions & {
+                      \begin{enumerate}
+                      \item Searches for a specific topic.
+                      \item Searches for website keywords and meta-description.
+                      \end{enumerate}
+                      }\vspace*{-\baselineskip}
+    \\\hline
     % Main Success Section = Use-Cases >> Diagrams
     Senario & {
               \begin{enumerate}
-              \item The administrator feeds the database a new row with the website URL and its metadata.
+              \item The user fills in username and password fields.
+              \item The user clicks on the login button.
+              \item The system will validate the username and password. If correct, log in; otherwise, stay on the current login page.
+              \item The system logs both correct and wrong login.
               \end{enumerate}
-              } \\
-    \bottomrule
+              }\vspace*{-\baselineskip}
+    \\\bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Search Page}
+
+\begin{table}[H]
+  \caption{User Story 5}
+  \begin{tabular}{p{0.18\linewidth} | p{0.72\linewidth}}
+    \toprule
+    User Story ID & US5
+    \\\midrule
+    Name & Search Page
+    \\\hline
+    Statement & As a user, I want to open the search page, So that I can use the search box.
+    \\\hline
+    Priority & HIGH
+    \\\hline
+    Direct actors & User
+    \\\hline
+    Pre-Conditions & {
+                     \begin{enumerate}
+                     \item US4.
+                     \item Opens the search page page.
+                     \end{enumerate}
+                     }\vspace*{-\baselineskip}
+    \\\hline
+    Post-Conditions & {
+                      \begin{enumerate}
+                      \item Searches for a specific topic.
+                      \end{enumerate}
+                      }\vspace*{-\baselineskip}
+    \\\hline
+    Senario & {
+              \begin{enumerate}
+              \item The user clicks the search page anchor in the tab menu.
+              \item The system opens the page of the search.
+              \end{enumerate}
+              }\vspace*{-\baselineskip}
+    \\\bottomrule
   \end{tabular}
 \end{table}
 
 \subsection{Search Box}
 
 \begin{table}[H]
-  \caption{User Story 4}
-  \begin{tabular}{p{0.45\linewidth} | p{0.45\linewidth}}
+  \caption{User Story 6}
+  \begin{tabular}{p{0.18\linewidth} | p{0.72\linewidth}}
     \toprule
-    User Story Code & US4 \\
-    \midrule
-    Name & Search Box \\
-    \hline
-    Statement & As a user, I want a search box, So that I can write down my search query. \\
-    \hline
-    Priority & HIGH \\
-    \hline
-    Direct actors & User \\
-    \hline
+    User Story ID & US6
+    \\\midrule
+    Name & Search Box
+    \\\hline
+    Statement & As a user, I want a search box, So that I can write down my search query.
+    \\\hline
+    Priority & HIGH
+    \\\hline
+    Direct actors & User
+    \\\hline
     Pre-Conditions & {
                      \begin{enumerate}
-                     \item US1.
+                     \item US4.
+                     \item Opens the search page page.
                      \end{enumerate}
-                     } \\
-    \hline
-    Post-Conditions & - \\
-    \hline
+                     }\vspace*{-\baselineskip}
+    \\\hline
+    Post-Conditions & {
+                      \begin{enumerate}
+                      \item Clicks on URLs.
+                      \end{enumerate}
+                      }\vspace*{-\baselineskip}
+    \\\hline
     % Main Success Section = Use-Cases >> Diagrams
     Senario & {
               \begin{enumerate}
@@ -270,45 +364,45 @@ Your introduction briefly explains the problem you address, and what you've achi
               \item The system goes to the web page URL to fetch its metadata and gives points according to page errors.
               \item The system updates the page's rank in the database according to the points the page gains and the number of visits.
               \end{enumerate}
-              } \\
-    \bottomrule
+              }\vspace*{-\baselineskip}
+    \\\bottomrule
   \end{tabular}
 \end{table}
 
 \subsection{SEO Suggestions}
 
 \begin{table}[H]
-  \caption{User Story 5}
-  \begin{tabular}{p{0.45\linewidth} | p{0.45\linewidth}}
+  \caption{User Story 7}
+  \begin{tabular}{p{0.18\linewidth} | p{0.72\linewidth}}
     \toprule
-    User Story Code & US5 \\
-    \midrule
-    Name & SEO Suggestions \\
-    \hline
-    Statement & As a user, I want to search a live URL, So that I can get suitable keywords and meta descriptions. \\
-    \hline
-    Priority & REGULAR \\
-    \hline
-    Direct actors & User \\
-    \hline
+    User Story ID & US7
+    \\\midrule
+    Name & SEO Suggestions
+    \\\hline
+    Statement & As a user, I want to search a live URL, So that I can get suitable keywords and meta descriptions.
+    \\\hline
+    Priority & HIGH
+    \\\hline
+    Direct actors & User
+    \\\hline
     Pre-Conditions & {
                      \begin{enumerate}
-                     \item US1.
+                     \item US4.
+                     \item Opens the SEO Suggestions page.
                      \end{enumerate}
-                     } \\
-    \hline
-    Post-Conditions & - \\
-    \hline
-    % Main Success Section = Use-Cases >> Diagrams
+                     }\vspace*{-\baselineskip}
+    \\\hline
+    Post-Conditions & -
+    \\\hline
     Senario & {
               \begin{enumerate}
               \item The user write down a live URL in the search box.
-              \item The user clicks the search button.
+              \item The user clicks the find keywords and meta-description button.
               \item The system goes and scans the web page URL, extracts its meta-features.
               \item The system then lists out suitable keywords related to the contents of the web page URL and a meta-description.
               \end{enumerate}
-              } \\
-    \bottomrule
+              }\vspace*{-\baselineskip}
+    \\\bottomrule
   \end{tabular}
 \end{table}
 
@@ -316,7 +410,7 @@ Your introduction briefly explains the problem you address, and what you've achi
 
 \subsection{Actors}
 
-\subsubsection{System Administrator}
+\subsubsection{Administrator}
 
 \subsubsection{User}
 
@@ -331,13 +425,44 @@ Your introduction briefly explains the problem you address, and what you've achi
 \bibliographystyle{IEEEtran}
 \bibliography{references}
 
-
 % \newpage
 
 % To create Appendix with additional stuff
 % Put data files, CAD drawings, additional sketches, etc.
 
-% \appendix
-% \section{Appendix}
+\appendix
+\section{Appendix}
+
+\subsection{Application Screenshots}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{login.png}
+  \caption{Login Page}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{feed-urls.png}
+  \caption{Feed Website URLs}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{page-ranking.png}
+  \caption{Page Ranking}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{search-page.png}
+  \caption{Search page}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{seo-suggestions.png}
+  \caption{SEO Suggestions}
+\end{figure}
 
 \end{document}
