@@ -24,6 +24,8 @@ BWHITE := \033[1;37m
 all:
 	@printf "%b" "$(BYELLOW)Building $(TARGET)...\n$(NC)"
 	pdflatex $(TARGET).tex
+	@printf "%b" "$(BYELLOW)Refreshing $(TARGET)...\n$(NC)"
+	pdflatex $(TARGET).tex
 	@printf "%b" "$(BGREEN)Done.\n$(NC)"
 	zathura $(TARGET).pdf
 
