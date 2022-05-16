@@ -37,7 +37,7 @@
 \usepackage{hyperref}
 \usepackage{enumitem}
 
-\setlist{resume,leftmargin=8mm,label=\arabic*.,itemsep=-0.5mm,topsep=-3mm}
+\setlist{resume,leftmargin=8mm,itemsep=-0.5mm,topsep=-3mm}
 
 % Storage Path for images
 \graphicspath{{images/}}
@@ -76,8 +76,8 @@
 	{\Large Computers \& Systems Engineering Department \par}\vspace{12pt}
 	\vfill
 	{\huge\bfseries\scshape Web Page Ranking \par}\vspace{8pt}
-  {\scshape Seo Suggestion Search Engine Project \par}\vspace{8pt}
-  {\itshape (Software Design Report) \par}
+  {\scshape SEO Suggestion Search Engine Project \par}\vspace{8pt}
+  {\itshape (System Design Report) \par}
 	\vfill
 	{\Large\texttt{Contributors:} \\[12pt]
     \Large\itshape\ttfamily
@@ -100,389 +100,744 @@
 
 \newpage
 
-\begin{preface}
-  The purpose of a preface is to persuade your readers that they should read the rest of your written work. Keep it short. Describe your background and credentials. Discuss what inspired the project described in this report. Explain who your target audience is, and tell the reader why this project is important to them.
-\end{preface}\vspace{1cm}
-
-\begin{abstract}
-  A strong abstract sums up your work in very few sentences:
-  (i) state the problem you are addressing;
-  (ii) say why it’s an interesting problem, and which issues are hard to tackle;
-  (iii) give your approach towards solving the problem;
-  (iv) say why and how well your approach solves the problem.
-\end{abstract}\vspace{1cm}
-
-\newpage
-
 \tableofcontents
 
 \newpage
 
 \section{Introduction}
 
-Your introduction briefly explains the problem you address, and what you've achieved towards solving the problem. It's an edited and updated version of your context and objectives from your topic outline document.
+Our Page Ranking Project has the basic search functionality for searching website data. Furthermore, The Page Rank Project keeps track of visited website URLs and updates that number in the database automatically when the user clicks on that website URL. Additionally, website owners can find suitable keywords and meta-description for their website. The system also has the page rank calculations feature, which is only visible to the admin.
 
 \section{User Stories}
 
-Our system has two main actors: Administrator and User.
-
-\subsection{Administrator Login}
+The system has two main actors: The administrator and the User.
+In the following set of tables, we describe in detail the user story.
+Each user story is attached to it a UI design for better understanding. Furthermore, the user story acceptance criteria.
 
 \begin{table}[H]
-  \caption{User Story 1}
-  \begin{tabular}{p{0.18\linewidth} | p{0.72\linewidth}}
+  \caption{Administrator login, user story 1}
+  \begin{tabular}{p{0.20\linewidth} | p{0.74\linewidth}}
     \toprule
-    User Story ID & US1
+    ID & US\_1
     \\\midrule
-    Name & Administrator login
+    Summary & \textbf{Administrator login}
     \\\hline
-    Statement & As an administrator, I want to login into the system, So that I can enter the admin area.
+    Description & \textbf{As an} administrator, \textbf{I want} to login into the system, \textbf{So that} I can enter the admin area.
     \\\hline
-    Priority & HIGH
+    Priority & \textcolor{red}{Highest}
     \\\hline
-    Estimation & 3 pts
+    Story Points & 3
     \\\hline
-    Direct actors & Administrator
+    UI/UX Attachment & {
+                       \begin{center}
+                         \includegraphics[scale=0.23]{login.pdf}
+                       \end{center}
+                       }
     \\\hline
-    Pre-Conditions & {
-                     \begin{enumerate}
-                     \item Has internet access.
-                     \item Has a browser.
-                     \item Opens the login page in the browser.
-                     \end{enumerate}
+    Pre Conditions & {
+                     \begin{itemize}
+                     \item The administrator should have the authorization credentials to enter the admin area.
+                     \end{itemize}
                      }\vspace*{-\baselineskip}
     \\\hline
-    Post-Conditions & {
-                      \begin{enumerate}
-                      \item Feeds the database website URLs and their metadata.
-                      \item Views the page ranking.
-                      \end{enumerate}
-                      }\vspace*{-\baselineskip}
-    \\\hline
-    Senario & {
-              \begin{enumerate}
-              \item The administrator fills in username and password fields.
-              \item The administrator clicks on the admin login button.
-              \item The system will validate the username and password. If correct, log in; otherwise, stay on the current login page.
-              \item The system logs both correct and wrong login.
-              \end{enumerate}
-              }\vspace*{-\baselineskip}
+    Acceptance Criteria & {
+                          \begin{center}
+                            \textbf{Senario: } Admin successfully login into the system. \\
+                          \end{center}
+    \textbf{Given} The admin navigates to the login page, \textbf{When} The admin enters a valid username and password \textbf{And} The admin clicks on the Admin Login button, \textbf{Then} The admin will successfully login into the system.
+    }
     \\\bottomrule
   \end{tabular}
 \end{table}
 
-\subsection{Website URLs}
-
 \begin{table}[H]
-  \caption{User Story 2}
-  \begin{tabular}{p{0.18\linewidth} | p{0.72\linewidth}}
+  \caption{Feeding a new website URL to search, user story 2}
+  \begin{tabular}{p{0.20\linewidth} | p{0.74\linewidth}}
     \toprule
-    User Story ID & US2
+    ID & US\_2
     \\\midrule
-    Name & Website URLs
+    Summary & \textbf{Feeds website URls}
     \\\hline
-    Statement & As an administrator, I want to feed the database website URLs and their metadata, So that the system can use them to search the user query.
+    Description & \textbf{As an} administrator, \textbf{I want} to be able to feed the database website URLs and their metadata, \textbf{So that} the system can use them to search the user query.
     \\\hline
-    Priority & HIGH
+    Priority & \textcolor{red}{Highest}
     \\\hline
-    Direct actors & Administrator
+    Story Points & 5
     \\\hline
-    Pre-Conditions & {
-                     \begin{enumerate}
-                     \item US1.
-                     \item Opens the Feed URLs page.
-                     \end{enumerate}
+    UI/UX Attachment & {
+                       \begin{center}
+                         \includegraphics[scale=0.23]{website-urls.pdf}
+                       \end{center}
+                       }
+    \\\hline
+    Pre Conditions & {
+                     \begin{itemize}
+                     \item US\_1
+                     \end{itemize}
                      }\vspace*{-\baselineskip}
     \\\hline
-    Post-Conditions & -
-    \\\hline
-    Senario & {
-              \begin{enumerate}
-              \item The administrator feeds the database website URLs and its metadata.
-              \item The administrator clicks on add new website button.
-              \item The system saves the data in a new row in the database.
-              \end{enumerate}
-              }\vspace*{-\baselineskip}
+    Acceptance Criteria & {
+                          \begin{center}
+                            \textbf{Senario: } Admin successfully feeds a website URL and its metadata. \\
+                          \end{center}
+    \textbf{Given} The admin navigates to the website URLs page, \textbf{When} The admin enters a valid URL and metadata \textbf{And} The admin clicks on submit new URL button, \textbf{Then} The system will add new website to the database.
+    }
     \\\bottomrule
   \end{tabular}
 \end{table}
 
-\subsection{Page Ranking}
-
 \begin{table}[H]
-  \caption{User Story 3}
-  \begin{tabular}{p{0.18\linewidth} | p{0.72\linewidth}}
+  \caption{Page rank calculations, user story 3}
+  \begin{tabular}{p{0.20\linewidth} | p{0.74\linewidth}}
     \toprule
-    User Story ID & US3
+    ID & US\_3
     \\\midrule
-    Name & Page Ranking
+    Summary & \textbf{Page rank calculations}
     \\\hline
-    Statement & As an administrator, I want to view the page rank, So that I can optimize the search functionality.
+    Description & \textbf{As an} administrator, \textbf{I want} to view the page rank calculations, \textbf{So that} I can optimize the search functionality.
     \\\hline
-    Priority & REGULAR
+    Priority & \textcolor{orange}{High}
     \\\hline
-    Direct actors & Administrator
+    Story Points & 8
     \\\hline
-    Pre-Conditions & {
-                     \begin{enumerate}
-                     \item US1.
-                     \item Opens the Page Ranking page.
-                     \end{enumerate}
+    UI/UX Attachment & {
+                       \begin{center}
+                         \includegraphics[scale=0.23]{page-rank.pdf}
+                       \end{center}
+                       }
+    \\\hline
+    Pre Conditions & {
+                     \begin{itemize}
+                     \item US\_1
+                     \end{itemize}
                      }\vspace*{-\baselineskip}
     \\\hline
-    Post-Conditions & -
-    \\\hline
-    Senario & {
-              \begin{enumerate}
-              \item The administrator clicks the page ranking anchor in the tab menu.
-              \item The system lists the website URLs in the database sorted based on their number of visits and points.
-              \end{enumerate}
-              }\vspace*{-\baselineskip}
+    Acceptance Criteria & {
+                          \begin{center}
+                            \textbf{Senario: } Admin will be able to display the page rank list. \\
+                          \end{center}
+    \textbf{Given} The admin navigates to the Page Rank page, \textbf{Then} The system will list out all pages sorted in descending order according to their points and visits.
+    }
     \\\bottomrule
   \end{tabular}
 \end{table}
 
-\subsection{User Login}
-
 \begin{table}[H]
-  \caption{User Story 4}
-  \begin{tabular}{p{0.18\linewidth} | p{0.72\linewidth}}
+  \caption{User registration, user story 4}
+  \begin{tabular}{p{0.20\linewidth} | p{0.74\linewidth}}
     \toprule
-    User Story ID & US4
+    ID & US\_4
     \\\midrule
-    Name & User login
+    Summary & \textbf{User registration}
     \\\hline
-    Statement & As a user, I want to login into the system, So that I can search for specific topics.
+    Description & \textbf{As a} user, \textbf{I want} to be able to register to the system, \textbf{So that} I can use system functionality.
     \\\hline
-    Priority & HIGH
+    Priority & \textcolor{red}{Highest}
     \\\hline
-    Direct actors & User
+    Story Points & 3
     \\\hline
-    Pre-Conditions & {
-                     \begin{enumerate}
-                     \item Has internet access.
-                     \item Has a browser.
-                     \item Opens the login page in the browser.
-                     \end{enumerate}
-                     }\vspace*{-\baselineskip}
+    UI/UX Attachment & {
+                       \begin{center}
+                         \includegraphics[scale=0.23]{register.pdf}
+                       \end{center}
+                       }
     \\\hline
-    Post-Conditions & {
-                      \begin{enumerate}
-                      \item Searches for a specific topic.
-                      \item Searches for website keywords and meta-description.
-                      \end{enumerate}
-                      }\vspace*{-\baselineskip}
+    Pre Conditions & -
     \\\hline
-    % Main Success Section = Use-Cases >> Diagrams
-    Senario & {
-              \begin{enumerate}
-              \item The user fills in username and password fields.
-              \item The user clicks on the login button.
-              \item The system will validate the username and password. If correct, log in; otherwise, stay on the current login page.
-              \item The system logs both correct and wrong login.
-              \end{enumerate}
-              }\vspace*{-\baselineskip}
+    Acceptance Criteria & {
+                          \begin{center}
+                            \textbf{Senario: } User successfully register to the system. \\
+                          \end{center}
+    \textbf{Given} The user navigates to the sign-up page, \textbf{When} The user enters a valid email, username, full name, password, and confirm password correctly \textbf{And} The user clicks on the Register button, \textbf{Then} The system will successfully register the user into the system.
+    }
     \\\bottomrule
   \end{tabular}
 \end{table}
 
-\subsection{Search Page}
-
 \begin{table}[H]
-  \caption{User Story 5}
-  \begin{tabular}{p{0.18\linewidth} | p{0.72\linewidth}}
+  \caption{User login, user story 5}
+  \begin{tabular}{p{0.20\linewidth} | p{0.74\linewidth}}
     \toprule
-    User Story ID & US5
+    ID & US\_5
     \\\midrule
-    Name & Search Page
+    Summary & \textbf{User login}
     \\\hline
-    Statement & As a user, I want to open the search page, So that I can use the search box.
+    Description & \textbf{As a} user, \textbf{I want} to login into the system, \textbf{So that} I can search for specific topics and finding suitable keywords for my website.
     \\\hline
-    Priority & HIGH
+    Priority & \textcolor{red}{Highest}
     \\\hline
-    Direct actors & User
+    Story Points & 2
     \\\hline
-    Pre-Conditions & {
-                     \begin{enumerate}
-                     \item US4.
-                     \item Opens the search page page.
-                     \end{enumerate}
+    UI/UX Attachment & {
+                       \begin{center}
+                         \includegraphics[scale=0.23]{login.pdf}
+                       \end{center}
+                       }
+    \\\hline
+    Pre Conditions & {
+                     \begin{itemize}
+                     \item US\_4
+                     \end{itemize}
                      }\vspace*{-\baselineskip}
     \\\hline
-    Post-Conditions & {
-                      \begin{enumerate}
-                      \item Searches for a specific topic.
-                      \end{enumerate}
-                      }\vspace*{-\baselineskip}
-    \\\hline
-    Senario & {
-              \begin{enumerate}
-              \item The user clicks the search page anchor in the tab menu.
-              \item The system opens the page of the search.
-              \end{enumerate}
-              }\vspace*{-\baselineskip}
+    Acceptance Criteria & {
+                          \begin{center}
+                            \textbf{Senario: } User successfully login into the system. \\
+                          \end{center}
+    \textbf{Given} The user navigates to the login page, \textbf{When} The user enters a valid username and password \textbf{And} The user clicks on the Login button, \textbf{Then} The user will successfully login into the system.
+    }
     \\\bottomrule
   \end{tabular}
 \end{table}
 
-\subsection{Search Box}
-
 \begin{table}[H]
-  \caption{User Story 6}
-  \begin{tabular}{p{0.18\linewidth} | p{0.72\linewidth}}
+  \caption{Search box, user story 6}
+  \begin{tabular}{p{0.20\linewidth} | p{0.74\linewidth}}
     \toprule
-    User Story ID & US6
+    ID & US\_6
     \\\midrule
-    Name & Search Box
+    Summary & \textbf{Search box}
     \\\hline
-    Statement & As a user, I want a search box, So that I can write down my search query.
+    Description & \textbf{As a} user, \textbf{I want} to be able to use the search box on the search page, \textbf{So that} I can be able to query.
     \\\hline
-    Priority & HIGH
+    Priority & \textcolor{red}{Highest}
     \\\hline
-    Direct actors & User
+    Story Points & 8
     \\\hline
-    Pre-Conditions & {
-                     \begin{enumerate}
-                     \item US4.
-                     \item Opens the search page page.
-                     \end{enumerate}
+    UI/UX Attachment & {
+                       \begin{center}
+                         \includegraphics[scale=0.2]{search-box.pdf}
+                         \includegraphics[scale=0.2]{search-result.pdf}
+                       \end{center}
+                       }
+    \\\hline
+    Pre Conditions & {
+                     \begin{itemize}
+                     \item US\_5
+                     \end{itemize}
                      }\vspace*{-\baselineskip}
     \\\hline
-    Post-Conditions & {
-                      \begin{enumerate}
-                      \item Clicks on URLs.
-                      \end{enumerate}
-                      }\vspace*{-\baselineskip}
-    \\\hline
-    % Main Success Section = Use-Cases >> Diagrams
-    Senario & {
-              \begin{enumerate}
-              \item The user write down his/her search query in the search box.
-              \item The user clicks the search button.
-              \item The system uses this query and matches it with the content provided in URLs fed in the database.
-              \item The system generates a list of related URLs.
-              \item The user can then click on any URL in the generated list, and the URL will open the corresponding website.
-              \item The system increases the number of visits to that URL in the database.
-              \item The system goes to the web page URL to fetch its metadata and gives points according to page errors.
-              \item The system updates the page's rank in the database according to the points the page gains and the number of visits.
-              \end{enumerate}
-              }\vspace*{-\baselineskip}
+    Acceptance Criteria & {
+                          \begin{center}
+                            \textbf{Senario: } User successfully using the search box. \\
+                          \end{center}
+    \textbf{Given} The user navigates to the search page, \textbf{When} The user enters a query in the search box \textbf{And} The user clicks on the Search button, \textbf{Then} The system will generate a list of website URLs related to that query.
+    }
     \\\bottomrule
   \end{tabular}
 \end{table}
 
-\subsection{SEO Suggestions}
-
 \begin{table}[H]
-  \caption{User Story 7}
-  \begin{tabular}{p{0.18\linewidth} | p{0.72\linewidth}}
+  \caption{Keywords and meta-descriptions extraction, user story 7}
+  \begin{tabular}{p{0.20\linewidth} | p{0.74\linewidth}}
     \toprule
-    User Story ID & US7
+    ID & US\_7
     \\\midrule
-    Name & SEO Suggestions
+    Summary & \textbf{Keywords and meta-descriptions extraction}
     \\\hline
-    Statement & As a user, I want to search a live URL, So that I can get suitable keywords and meta descriptions.
+    Description & \textbf{As a} website owner, \textbf{I want} to search a live URL, \textbf{So that} I can get suitable keywords and meta-descriptions for my website.
     \\\hline
-    Priority & HIGH
+    Priority & \textcolor{magenta}{Medium}
     \\\hline
-    Direct actors & User
+    Story Points & 5
     \\\hline
-    Pre-Conditions & {
-                     \begin{enumerate}
-                     \item US4.
-                     \item Opens the SEO Suggestions page.
-                     \end{enumerate}
+    UI/UX Attachment & {
+                       \begin{center}
+                         \includegraphics[scale=0.20]{seo-suggestions.pdf}
+                         \includegraphics[scale=0.20]{seo-suggestions-result.pdf}
+                       \end{center}
+                       }
+    \\\hline
+    Pre Conditions & {
+                     \begin{itemize}
+                     \item US\_5
+                     \end{itemize}
                      }\vspace*{-\baselineskip}
     \\\hline
-    Post-Conditions & -
-    \\\hline
-    Senario & {
-              \begin{enumerate}
-              \item The user write down a live URL in the search box.
-              \item The user clicks the find keywords and meta-description button.
-              \item The system goes and scans the web page URL, extracts its meta-features.
-              \item The system then lists out suitable keywords related to the contents of the web page URL and a meta-description.
-              \end{enumerate}
-              }\vspace*{-\baselineskip}
+    Acceptance Criteria & {
+                          \begin{center}
+                            \textbf{Senario: } Website owner successfully using the live URL search box for extracting keywords. \\
+                          \end{center}
+    \textbf{Given} The website owner navigates to the seo suggestions page, \textbf{When} The website owner enters a live URL in the search box \textbf{And} The website owner clicks on the Extract button, \textbf{Then} The system will generate a list of keywords and meta-descriptions from that website's data.
+    }
     \\\bottomrule
   \end{tabular}
 \end{table}
 
-\section{Use-cases}
+\section{Use Cases}
 
-\subsection{Actors}
+\subsection{Use Case Diagram}
 
-\subsubsection{Administrator}
+The diagram below visualizes all the actors in the system and all the interactions each actor can do.
 
-\subsubsection{User}
-
-\section{ERD Diagram}
-
-\section{Testing Script}
-
-\section{Conclusion}
+\begin{figure}[H]
+  \begin{center}
+    \caption{User case diagram}
+    \includegraphics[scale=0.44]{use-cases-diagram.png}
+  \end{center}
+\end{figure}
 
 \newpage
 
-\bibliographystyle{IEEEtran}
-\bibliography{references}
+\subsection{Use Case Model}
+
+This section includes the details, description, and the main success scenario of use cases in an organized way.
+
+\begin{table}[H]
+  \caption{Administrator login, use case 1}
+  \begin{tabular}{p{0.20\linewidth} | p{0.74\linewidth}}
+    \toprule
+    ID & UC\_1
+    \\\midrule
+    Title & \textbf{Administrator login}
+    \\\hline
+    Description & The administrator shall login into the system using admin credentials.
+    \\\hline
+    Primary Actor & Administrator
+    \\\hline
+    Pre-Conditions & {
+                     \begin{itemize}
+                     \item The administrator should have the authorization credentials to enter the admin area.
+                     \end{itemize}
+                     }\vspace*{-\baselineskip}
+    \\\hline
+    Post-Conditions & -
+    \\\hline
+    Main Success Scenario & {
+                            \begin{enumerate}
+                            \item The administrator fills in username and password fields.
+                            \item The administrator clicks on the admin login button.
+                            \item The system will validate the username and password. If correct, login into the system; otherwise, stay on the current login page.
+                            \end{enumerate}
+                            }\vspace*{-\baselineskip}
+    \\\bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[H]
+  \caption{Feed new website URL, use case 2}
+  \begin{tabular}{p{0.20\linewidth} | p{0.74\linewidth}}
+    \toprule
+    ID & UC\_2
+    \\\midrule
+    Title & \textbf{Feed new website URL}
+    \\\hline
+    Description & The administrator shall feed a new website URL and its metadata into the system.
+    \\\hline
+    Primary Actor & Administrator
+    \\\hline
+    Pre Conditions & {
+                     \begin{itemize}
+                     \item UC\_1
+                     \end{itemize}
+                     }\vspace*{-\baselineskip}
+    \\\hline
+    Post Conditions & The system saves the data to the database.
+    \\\hline
+    Main Success Scenario & {
+                            \begin{enumerate}
+                            \item The administrator feeds the database website URLs and its metadata.
+                            \item The administrator clicks on add new website button.
+                            \item The system saves the data in a new row in the database.
+                            \end{enumerate}
+                            }\vspace*{-\baselineskip}
+    \\\bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[H]
+  \caption{View page rank calculations, use case 3}
+  \begin{tabular}{p{0.20\linewidth} | p{0.74\linewidth}}
+    \toprule
+    ID & UC\_3
+    \\\midrule
+    Title & \textbf{View page rank calculations}
+    \\\hline
+    Description & The administrator shall be able to view the page rank calculations.
+    \\\hline
+    Primary Actor & Administrator
+    \\\hline
+    Pre Conditions & {
+                     \begin{itemize}
+                     \item UC\_1
+                     \end{itemize}
+                     }\vspace*{-\baselineskip}
+    \\\hline
+    Post Conditions & -
+    \\\hline
+    Main Success Scenario & {
+                            \begin{enumerate}
+                            \item The administrator clicks the page ranking anchor in the tab menu.
+                            \item The system lists the website URLs in the database sorted based on their number of visits and points.
+                            \end{enumerate}
+                            }\vspace*{-\baselineskip}
+    \\\bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[H]
+  \caption{User registration, use case 4}
+  \begin{tabular}{p{0.20\linewidth} | p{0.74\linewidth}}
+    \toprule
+    ID & UC\_4
+    \\\midrule
+    Title & \textbf{User registration}
+    \\\hline
+    Description & The user shall be able to register to the system.
+    \\\hline
+    Primary Actor & User
+    \\\hline
+    Pre Conditions & -
+    \\\hline
+    Post Conditions & The system redirects the user to the login page.
+    \\\hline
+    Main Success Scenario & {
+                            \begin{enumerate}
+                            \item The user enters a valid email, password, username, full name, and confirm the password correctly.
+                            \item The user clicks the Sign up button.
+                            \item The system successfully register the user into the system.
+                            \end{enumerate}
+                            }\vspace*{-\baselineskip}
+    \\\bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[H]
+  \caption{User login, use case 5}
+  \begin{tabular}{p{0.20\linewidth} | p{0.74\linewidth}}
+    \toprule
+    ID & UC\_5
+    \\\midrule
+    Title & \textbf{User login}
+    \\\hline
+    Description & The user shall be able to login into the system.
+    \\\hline
+    Primary Actor & User
+    \\\hline
+    Pre Conditions & {
+                     \begin{itemize}
+                     \item UC\_4
+                     \end{itemize}
+                     }\vspace*{-\baselineskip}
+    \\\hline
+    Post Conditions & The system redirects the user to the search page.
+    \\\hline
+    Main Success Scenario & {
+                            \begin{enumerate}
+                            \item The user fills in username and password fields.
+                            \item The user clicks on the login button.
+                            \item The system will validate the username and password. If correct, login; otherwise, stay on the current login page.
+                            \end{enumerate}
+                            }\vspace*{-\baselineskip}
+    \\\bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[H]
+  \caption{Search query, use case 6}
+  \begin{tabular}{p{0.20\linewidth} | p{0.74\linewidth}}
+    \toprule
+    ID & UC\_6
+    \\\midrule
+    Title & \textbf{Search query}
+    \\\hline
+    Description & The user shall be able to use the search functionality for searching specific terms.
+    \\\hline
+    Primary Actor & User
+    \\\hline
+    Pre Conditions & {
+                     \begin{itemize}
+                     \item UC\_5
+                     \end{itemize}
+                     }\vspace*{-\baselineskip}
+    \\\hline
+    Post Conditions & The system will generate a list of related website URLs that matches the query.
+    \\\hline
+    Main Success Scenario & {
+                            \begin{enumerate}
+                            \item The user clicks the search page anchor in the tab menu.
+                            \item The system opens the page of the search.
+                            \item The user write down his/her search query in the search box.
+                            \item The user clicks the search button.
+                            \item The system uses this query and matches it with the content provided in URLs fed in the database.
+                            \item The system generates a list of related URLs.
+                            \item The user can then click on any URL in the generated list, and the URL will open the corresponding website.
+                            \item The system increases the number of visits to that URL in the database.
+                            \item The system goes to the web page URL to fetch its metadata and gives points according to page errors.
+                            \item The system updates the page's rank in the database according to the points the page gains and the number of visits.
+                            \end{enumerate}
+                            }\vspace*{-\baselineskip}
+    \\\bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[H]
+  \caption{Extract keywords and meta-descriptions, use case 7}
+  \begin{tabular}{p{0.20\linewidth} | p{0.74\linewidth}}
+    \toprule
+    ID & UC\_7
+    \\\midrule
+    Title & \textbf{Extract keywords and meta-descriptions}
+    \\\hline
+    Description & The website owner shall be able to use the SEO suggestion to find suitable keywords and meta-descriptions for their website.
+    \\\hline
+    Primary Actor & User
+    \\\hline
+    Pre Conditions & {
+                     \begin{itemize}
+                     \item UC\_5
+                     \end{itemize}
+                     }\vspace*{-\baselineskip}
+    \\\hline
+    Post Conditions & The system will extract a list of keywords and meta-descriptions from that particular URL.
+    \\\hline
+    Main Success Scenario & {
+                            \begin{enumerate}
+                            \item The user write down a live URL in the search box.
+                            \item The user clicks the find keywords and meta-description button.
+                            \item The system goes and scans the web page URL, extracts its meta-features.
+                            \item The system then lists out suitable keywords related to the contents of the web page URL and a meta-description.
+                            \end{enumerate}
+                            }\vspace*{-\baselineskip}
+    \\\bottomrule
+  \end{tabular}
+\end{table}
+
+\section{Sequence Diagram}
+
+\section{Entity Relationship Diagram}
+
+The following diagram below shows the relationship between the system entities.
+
+\begin{figure}[H]
+  \begin{center}
+    \caption{Entity relationship diagram}
+    \includegraphics[scale=0.95]{erd-diagram.png}
+  \end{center}
+\end{figure}
+
+\section{Test Scripts}
+
+Below are the test scripts for checking if the application acts as expected.
+
+\begin{table}[H]
+  \caption{Check admin login with valid credentials, test case 1}
+  \begin{tabular}{p{0.2\linewidth} | p{0.74\linewidth}}
+    \toprule
+    ID & TC\_1
+    \\\midrule
+    Description & Check Admin login with valid credentials
+    \\\hline
+    Priority & \textcolor{orange}{High}
+    \\\hline
+    Test Steps & {
+                 \begin{enumerate}
+                 \item Go to \url{https://search-engine.org/login}
+                 \item Enter Username
+                 \item Enter Password
+                 \item Click Admin Login
+                 \end{enumerate}
+                 }\vspace*{-\baselineskip}
+    \\\hline
+    Test Data & {
+                \begin{itemize}
+                \item Username: abdurrahman
+                \item Password: Hoi34m4nj3j
+                \end{itemize}
+                }\vspace*{-\baselineskip}
+    \\\hline
+    Expected Results & Admin should Login into the system.
+    \\\hline
+    Actual Results & As expected
+    \\\hline
+    Status & Passed
+    \\\bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[H]
+  \caption{Check user login with valid credentials, test case 2}
+  \begin{tabular}{p{0.2\linewidth} | p{0.74\linewidth}}
+    \toprule
+    ID & TC\_2
+    \\\midrule
+    Description & Check user login with valid credentials
+    \\\hline
+    Priority & \textcolor{orange}{High}
+    \\\hline
+    Test Steps & {
+                 \begin{enumerate}
+                 \item Go to \url{https://search-engine.org/login}
+                 \item Enter Username
+                 \item Enter Password
+                 \item Click Login
+                 \end{enumerate}
+                 }\vspace*{-\baselineskip}
+    \\\hline
+    Test Data & {
+                \begin{itemize}
+                \item Username: omar\_yousuf
+                \item Password: omar123457
+                \end{itemize}
+                }\vspace*{-\baselineskip}
+    \\\hline
+    Expected Results & User should Login into the system.
+    \\\hline
+    Actual Results & As expected
+    \\\hline
+    Status & Passed
+    \\\bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[H]
+  \caption{Check user registration with valid credentials, test case 3}
+  \begin{tabular}{p{0.2\linewidth} | p{0.74\linewidth}}
+    \toprule
+    ID & TC\_3
+    \\\midrule
+    Description & Check user registration with valid credentials
+    \\\hline
+    Priority & \textcolor{orange}{High}
+    \\\hline
+    Test Steps & {
+                 \begin{enumerate}
+                 \item Go to \url{https://search-engine.org/signup}
+                 \item Enter Email
+                 \item Enter Username
+                 \item Enter Full Name
+                 \item Enter Password
+                 \item Confirm Password
+                 \item Click Sign up
+                 \end{enumerate}
+                 }\vspace*{-\baselineskip}
+    \\\hline
+    Test Data & {
+                \begin{itemize}
+                \item Email: omar\_ahmad@gmail.com
+                \item Username: omar\_ahmad
+                \item Full Name: Omar Ahmad Allam
+                \item Password: omar2022
+                \end{itemize}
+                }\vspace*{-\baselineskip}
+    \\\hline
+    Expected Results & User should be able to register to the system.
+    \\\hline
+    Actual Results & As expected
+    \\\hline
+    Status & Passed
+    \\\bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[H]
+  \caption{Check search functionality, test case 4}
+  \begin{tabular}{p{0.2\linewidth} | p{0.74\linewidth}}
+    \toprule
+    ID & TC\_4
+    \\\midrule
+    Description & Check search functionality
+    \\\hline
+    Priority & \textcolor{orange}{High}
+    \\\hline
+    Test Steps & {
+                 \begin{enumerate}
+                 \item Go to \url{https://search-engine.org/search}
+                 \item write term in the search box
+                 \item Click Search
+                 \end{enumerate}
+                 }\vspace*{-\baselineskip}
+    \\\hline
+    Test Data & {
+                \begin{itemize}
+                \item term: Linux
+                \end{itemize}
+                }\vspace*{-\baselineskip}
+    \\\hline
+    Expected Results & The system should list three URLs, GitHub, Facebook, and CodeForces.
+    \\\hline
+    Actual Results & As expected
+    \\\hline
+    Status & Passed
+    \\\bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[H]
+  \caption{Check feed new website functionality, test case 5}
+  \begin{tabular}{p{0.2\linewidth} | p{0.74\linewidth}}
+    \toprule
+    ID & TC\_5
+    \\\midrule
+    Description & Check feed new website functionality
+    \\\hline
+    Priority & \textcolor{orange}{High}
+    \\\hline
+    Test Steps & {
+                 \begin{enumerate}
+                 \item Go to \url{https://search-engine.org/feed-new-website}
+                 \item write the website URL
+                 \item Write the meta-descriptions for the website
+                 \item Click add new URL
+                 \end{enumerate}
+                 }\vspace*{-\baselineskip}
+    \\\hline
+    Test Data & {
+                \begin{itemize}
+                \item \url{URL: https://github.com}
+                \item meta-descriptions: GitHub is a provider of Internet hosting for software development and version control using Git
+                \end{itemize}
+                }\vspace*{-\baselineskip}
+    \\\hline
+    Expected Results & The system should respond with a notification, "Added new website to the database."
+    \\\hline
+    Actual Results & As expected
+    \\\hline
+    Status & Passed
+    \\\bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[H]
+  \caption{Check page rank calculations, test case 6}
+  \begin{tabular}{p{0.2\linewidth} | p{0.74\linewidth}}
+    \toprule
+    ID & TC\_6
+    \\\midrule
+    Description & Check page rank calculations
+    \\\hline
+    Priority & \textcolor{orange}{High}
+    \\\hline
+    Test Steps & {
+                 \begin{enumerate}
+                 \item Go to \url{https://search-engine.org/pagerank}
+                 \end{enumerate}
+                 }\vspace*{-\baselineskip}
+    \\\hline
+    Test Data & -
+    \\\hline
+    Expected Results & The system should list all websites in ascending order according to their points and number of visits.
+    \\\hline
+    Actual Results & As expected
+    \\\hline
+    Status & Passed
+    \\\bottomrule
+  \end{tabular}
+\end{table}
+
+% \section{Conclusion}
+
+% \newpage
+
+% \bibliographystyle{IEEEtran}
+% \bibliography{references}
 
 % \newpage
 
 % To create Appendix with additional stuff
 % Put data files, CAD drawings, additional sketches, etc.
 
-\appendix
-\section{Appendix}
-
-\subsection{UI/UX Design}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.90\textwidth]{register.pdf}
-  \caption{Register Page}
-\end{figure}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.90\textwidth]{login.pdf}
-  \caption{Login Page}
-\end{figure}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.90\textwidth]{website-urls.pdf}
-  \caption{Website URLs}
-\end{figure}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.90\textwidth]{page-rank.pdf}
-  \caption{Page Rank}
-\end{figure}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.90\textwidth]{search-box.pdf}
-  \caption{Search Box}
-\end{figure}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.90\textwidth]{search-result.pdf}
-  \caption{Search Result}
-\end{figure}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.90\textwidth]{seo-suggestions.pdf}
-  \caption{SEO Suggestions Search}
-\end{figure}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.90\textwidth]{seo-suggestions-result.pdf}
-  \caption{SEO Suggestions Result}
-\end{figure}
+% \appendix
+% \section{Appendix}
 
 \end{document}
