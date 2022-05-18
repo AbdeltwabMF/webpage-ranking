@@ -22,6 +22,8 @@ This design report contains the functional requirements of the system:
 
 ![sysetm Flow](images/webpage-ranking-flow-1.png)
 
+## Features
+
 
 ## Contributors
 
@@ -29,7 +31,7 @@ This design report contains the functional requirements of the system:
 - [@AbdeltwabMF](https://github.com/AbdeltwabMF)
 - [@Abdulrhmankhalifa](https://github.com/)
 - [@Abdulrhmangamal](https://github.com/)
-- [@Abdulrhmanramadan](https://github.com/)
+- [@Abdelrahman-Ramadan](https://github.com/Abdelrahman-Ramadan)
 - [@abdelhameed](https://github.com/)
 
 
